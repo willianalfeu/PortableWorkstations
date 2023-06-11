@@ -1,0 +1,6 @@
+menu.name: "Portable Workstations"
+stonecutter.name: "Portable Cutter"
+stonecutter.lore: "A portable stone cutter"
+cartography.name: "Portable Cartography"
+cartography.lore: "A portable cartography table"
+action.hint: "&eRight Click &7to open"

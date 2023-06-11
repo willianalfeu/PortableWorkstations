@@ -7,16 +7,51 @@ import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
 import me.lostwizzen.portableworkstations.constants.PortableWorkstationsConstants;
+import net.md_5.bungee.api.ChatColor;
 
 public class PortableWorkstationsItem {
-    private PortableWorkstationsItem() {}
+	
+	private PortableWorkstationsItem() {
+	}
 
-    //groups
-    public static final ItemGroup PW_GENERAL = new ItemGroup(new NamespacedKey(PortableWorkstations.getInstance(), "PW_KEY_GENERAL"), new CustomItemStack(SkullCreator.itemFromBase64(PortableWorkstationsConstants.HEAD_WORKBENCH_BASE64), "&bPortable Workstations"));
+	public static ItemGroup defaultItemGroup;
+	public static SlimefunItemStack portableCartography;
+	public static SlimefunItemStack portableStonecutter;
 
-    //workstations
-    public static final SlimefunItemStack PW_STONECUTTER = new SlimefunItemStack("PW_STONECUTTER", SkullCreator.itemFromBase64(PortableWorkstationsConstants.HEAD_STONECUTTER_BASE64), PortableWorkstationsConstants.TITLE_STONECUTTER, "&fA portable stone cutter", "", "&7by &3lostwizzen", "", "&eRight Click &7to open");
-    public static final SlimefunItemStack PW_CARTOGRAPHY = new SlimefunItemStack("PW_CARTOGRAPHY", SkullCreator.itemFromBase64(PortableWorkstationsConstants.HEAD_CARTOGRAPHY_BASE64), PortableWorkstationsConstants.TITLE_CARTOGRAPHY, "&fA portable cartography table", "", "&7by &3lostwizzen", "", "&eRight Click &7to open");
+	public static ItemGroup getDefaultItemGroup() {
+		if (defaultItemGroup == null) {
+			String menuName = PortableWorkstations.getInstance().messages.get(PortableWorkstationsConstants.MENU_NAME);
+			defaultItemGroup = new ItemGroup(new NamespacedKey(PortableWorkstations.getInstance(), "PW_KEY_GENERAL"),
+					new CustomItemStack(SkullCreator.itemFromBase64(PortableWorkstationsConstants.HEAD_WORKBENCH_BASE64),
+							"§b"+menuName));
+		}
+		return defaultItemGroup;
+	}
+
+	public static SlimefunItemStack getPortableStonecutter() {
+		if (portableStonecutter == null) {
+			String itemName = ChatColor.stripColor(PortableWorkstations.getInstance().messages.get(PortableWorkstationsConstants.STONECUTTER_NAME));
+			String itemLore = ChatColor.stripColor(PortableWorkstations.getInstance().messages.get(PortableWorkstationsConstants.STONECUTTER_LORE));
+			String actionHint = PortableWorkstations.getInstance().messages.get(PortableWorkstationsConstants.ACTION_HINT);
+			portableStonecutter = new SlimefunItemStack("PW_STONECUTTER",
+					SkullCreator.itemFromBase64(PortableWorkstationsConstants.HEAD_STONECUTTER_BASE64),
+					"§6"+itemName, "§f"+itemLore, "",
+					"§7by §3lostwizzen", "", actionHint);
+		}
+		return portableStonecutter;
+	}
+
+	public static SlimefunItemStack getPortableCartography() {
+		if (portableCartography == null) {
+			String itemName = ChatColor.stripColor(PortableWorkstations.getInstance().messages.get(PortableWorkstationsConstants.CARTOGRAPHY_NAME));
+			String itemLore = ChatColor.stripColor(PortableWorkstations.getInstance().messages.get(PortableWorkstationsConstants.CARTOGRAPHY_LORE));
+			String actionHint = PortableWorkstations.getInstance().messages.get(PortableWorkstationsConstants.ACTION_HINT);
+			portableCartography = new SlimefunItemStack("PW_CARTOGRAPHY",
+					SkullCreator.itemFromBase64(PortableWorkstationsConstants.HEAD_CARTOGRAPHY_BASE64),
+					"§6"+itemName, "§f"+itemLore, "",
+					"§7by §3lostwizzen", "", actionHint);
+		}
+		return portableCartography;
+	}
 
 }
-
